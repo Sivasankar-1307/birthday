@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Grandfather | A Celebration of Love & Wisdom</title>
+    <meta name="description" content="A special, emotional birthday tribute to our beloved Grandfather. Celebrating his life, wisdom, and the beautiful memories we share.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme"> <!-- Defaults to dark theme for premium glowing gold appearance -->
+    
+    <!-- Canvas for Floating Particles background -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Canvas for Confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Background Music Holder (Chopin's beautiful piano Nocturne) -->
+    <audio id="bg-music" preload="none" loop>
+        <source src="https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op9-no2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Header & Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-text">Grandpa's Tribute</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" class="nav-item active">Home</a>
+            <a href="#wishes" class="nav-item">Wishes</a>
+            <a href="#journey" class="nav-item">Journey</a>
+            <a href="#gallery" class="nav-item">Memories</a>
+            <a href="#messages" class="nav-item">Messages</a>
+            <a href="#thank-you" class="nav-item">Thank You</a>
+        </nav>
+        <div class="nav-controls">
+            <!-- Music Control -->
+            <button id="music-toggle" class="control-btn" aria-label="Toggle Music">
+                <i class="fas fa-music"></i>
+                <div class="music-waves">
+                    <span></span><span></span><span></span>
+                </div>
+            </button>
+            <!-- Light/Dark Theme Switcher -->
+            <button id="theme-toggle" class="control-btn" aria-label="Toggle Theme">
+                <i class="fas fa-sun theme-icon-light"></i>
+                <i class="fas fa-moon theme-icon-dark"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+        
+        <!-- 1. Hero Banner Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-image-wrapper reveal-fade">
+                    <div class="hero-image-frame">
+                        <div class="frame-border-outer"></div>
+                        <div class="frame-border-inner"></div>
+                        <!-- Grandfather's main photo -->
+                        <img src="assets/1.jpg" alt="Grandfather's Portrait" id="hero-img" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600'">
+                    </div>
+                    <!-- Floating Badge -->
+                    <div class="hero-badge">
+                        <span class="badge-title">Our Hero</span>
+                    </div>
+                </div>
+                
+                <div class="hero-content">
+                    <h3 class="hero-subtitle reveal-up">Celebrating a Legacy</h3>
+                    <h1 class="hero-title reveal-up" data-delay="200">
+                        Happy Birthday, <br><span class="gold-gradient-text">Grandfather</span>
+                    </h1>
+                    
+                    <!-- Typing Text wishes -->
+                    <div class="typing-container reveal-up" data-delay="400">
+                        <span class="typing-text"></span><span class="typing-cursor">|</span>
+                    </div>
+
+                    <!-- Life Journey Counter -->
+                    <div class="counter-container reveal-up" data-delay="600">
+                        <p class="counter-title">Time Spent Spreading Love & Wisdom:</p>
+                        <div class="counter-grid">
+                            <div class="counter-box">
+                                <span class="counter-value" id="years-val">00</span>
+                                <span class="counter-label">Years</span>
+                            </div>
+                            <div class="counter-box">
+                                <span class="counter-value" id="months-val">00</span>
+                                <span class="counter-label">Months</span>
+                            </div>
+                            <div class="counter-box">
+                                <span class="counter-value" id="days-val">00</span>
+                                <span class="counter-label">Days</span>
+                            </div>
+                            <div class="counter-box">
+                                <span class="counter-value" id="hours-val">00</span>
+                                <span class="counter-label">Hours</span>
+                            </div>
+                            <div class="counter-box">
+                                <span class="counter-value" id="minutes-val">00</span>
+                                <span class="counter-label">Mins</span>
+                            </div>
+                            <div class="counter-box">
+                                <span class="counter-value" id="seconds-val">00</span>
+                                <span class="counter-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions reveal-up" data-delay="800">
+                        <a href="#wishes" class="btn btn-primary">Read Our Letter</a>
+                        <button class="btn btn-secondary celebrate-trigger-btn">
+                            <i class="fas fa-birthday-cake"></i> Trigger Confetti
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="mouse-icon">
+                    <span class="mouse-wheel"></span>
+                </span>
+                <span class="scroll-text">Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- Scratch Card Section (Interactive Surprise) -->
+        <section id="scratch" class="scratch-section section-padding">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">A Special Surprise</h2>
+                    <div class="header-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-gift divider-icon"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="section-subtitle">Scratch the card below to reveal a special birthday message for Grandpa!</p>
+                </div>
+
+                <div class="scratch-card-container reveal-up">
+                    <div class="scratch-card-wrapper">
+                        <!-- Secret Message (Underneath) -->
+                        <div class="scratch-card-content glass-card">
+                            <div class="scratch-prize-icon">
+                                <i class="fas fa-star-of-david gold-glow-icon"></i>
+                            </div>
+                            <h3>To the Best Grandpa in the Universe!</h3>
+                            <p class="scratch-message">"Your love, patience, and stories are the greatest treasures of our lives. We are so blessed to celebrate another beautiful year with you. We love you infinitely!"</p>
+                            <span class="scratch-family-stamp">❤️ With Love, Your Family</span>
+                        </div>
+                        
+                        <!-- Scratch Canvas (Overlay) -->
+                        <canvas id="scratch-canvas"></canvas>
+                    </div>
+                    
+                    <!-- Instructions -->
+                    <div class="scratch-instructions">
+                        <p id="scratch-instruction-text"><i class="fas fa-hand-pointer animate-swipe"></i> Click and drag (or swipe) to scratch the gold card!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Birthday Wishes Section -->
+        <section id="wishes" class="wishes-section section-padding">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Heartfelt Wishes</h2>
+                    <div class="header-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-heart divider-icon"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="section-subtitle">A letter written with love from the entire family to the anchor of our lives.</p>
+                </div>
+                
+                <div class="wishes-card-wrapper reveal-up" data-delay="200">
+                    <div class="glass-card wishes-card">
+                        <div class="card-decor-top"></div>
+                        <div class="wishes-content">
+                            <div class="letter-seal">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            <h3 class="letter-greeting">Dearest Grandpa,</h3>
+                            <div class="letter-body">
+                                <p>On this beautiful and milestone day, we gather our hearts together to celebrate you. You are more than just the patriarch of this family—you are our anchor, our storyteller, and the very foundation upon which our happiest memories are built.</p>
+                                <p>Your life is a living testament to strength, integrity, and unconditional love. We grew up watching you navigate life with a gentle grace, always putting family first, and teaching us the true value of kindness and resilience. Every story you share, every laugh you give, and every piece of wisdom you impart has shaped who we are today.</p>
+                                <p>Thank you for the warm embraces, the quiet guidance, and the constant reassurance that no matter what, we are loved. Today, we wish you a day filled with the same joy you have selflessly brought into our lives for decades.</p>
+                                <p>May this year bring you abundant health, endless laughter, peaceful days, and the warmth of knowing that your legacy is deeply cherished by every single one of us.</p>
+                            </div>
+                            <div class="letter-closing">
+                                <p class="closing-text">With all our love and deepest respect,</p>
+                                <p class="signature-font">Your Loving Family</p>
+                            </div>
+                        </div>
+                        <div class="card-decor-bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Grandfather's Journey Section -->
+        <section id="journey" class="journey-section section-padding">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">His Incredible Journey</h2>
+                    <div class="header-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-hourglass-half divider-icon"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="section-subtitle">Chronololing the milestones and golden memories of a life beautifully lived.</p>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item reveal-left">
+                        <div class="timeline-marker">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-year">1950</span>
+                            <h3 class="timeline-event-title">A Star is Born</h3>
+                            <p>Grandpa entered the world, bringing light and hope to his parents. Growing up in a small, close-knit town, he learned the values of hard work, curiosity, and family devotion at a very early age.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item reveal-right">
+                        <div class="timeline-marker">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-year">1967</span>
+                            <h3 class="timeline-event-title">Graduation & Early Steps</h3>
+                            <p>Graduating with honors, he embarked on his professional path. With deep ambition and a heart eager to contribute, he took his first job, laying the foundation of a lifetime of dedication and professional respect.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item reveal-left">
+                        <div class="timeline-marker">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-year">1975</span>
+                            <h3 class="timeline-event-title">A Beautiful Partnership</h3>
+                            <p>Grandpa married Grandma, marking the beginning of a legendary love story. Together, they built a sanctuary of warmth, welcoming children and standing hand-in-hand through every season of life.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item reveal-right">
+                        <div class="timeline-marker">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-year">2004</span>
+                            <h3 class="timeline-event-title">A New Chapter: Grandparenthood</h3>
+                            <p>The first grandchild was born, and with it, a new title that he holds closest to his heart. Grandpa became our storyteller, our playful defender, and our greatest cheerleader.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item reveal-left">
+                        <div class="timeline-marker">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-year">Present Day</span>
+                            <h3 class="timeline-event-title">Celebrating 76 Golden Years</h3>
+                            <p>Today, we celebrate seventy-six years of wisdom, warmth, and laughter. Grandpa stands as a beacon of love, looking out over a family that is eternally grateful for his presence and guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Memory Gallery Section -->
+        <section id="gallery" class="gallery-section section-padding">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Captured Memories</h2>
+                    <div class="header-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-images divider-icon"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="section-subtitle">Moments frozen in time, capturing the laughter, warmth, and milestones we share.</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item glass-card reveal-up">
+                        <div class="gallery-img-container">
+                            <img src="assets/1.jpg" alt="Grandpa's Portrait" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600'">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">Portraits</span>
+                                    <h4>A Warm Smile</h4>
+                                    <p>A true reflection of the love and peace Grandpa carries in his heart.</p>
+                                    <button class="view-btn" data-img="assets/1.jpg"><i class="fas fa-expand"></i> View Full</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item glass-card reveal-up" data-delay="100">
+                        <div class="gallery-img-container">
+                            <img src="assets/2.jpg" alt="Grandpa in Action" onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=600'">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">Moments</span>
+                                    <h4>Generations Connected</h4>
+                                    <p>Sharing his timeless wisdom with the ones who carry his legacy forward.</p>
+                                    <button class="view-btn" data-img="assets/2.jpg"><i class="fas fa-expand"></i> View Full</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item glass-card reveal-up" data-delay="200">
+                        <div class="gallery-img-container">
+                            <img src="assets/3.jpg" alt="Grandpa's Celebrations" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600'">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">Celebration</span>
+                                    <h4>Grandpa's Day</h4>
+                                    <p>A joyous moment surrounded by family, celebration, and gratitude.</p>
+                                    <button class="view-btn" data-img="assets/3.jpg"><i class="fas fa-expand"></i> View Full</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 (Unsplash Placeholder for grid layout variety) -->
+                    <div class="gallery-item glass-card reveal-up" data-delay="300">
+                        <div class="gallery-img-container">
+                            <img src="assets/4.jpg" alt="Family Walk" onerror="this.src='https://images.unsplash.com/photo-1460518451285-cd7afdf119d8?auto=format&fit=crop&q=80&w=600'">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">Outdoors</span>
+                                    <h4>Golden Sunset Walk</h4>
+                                    <p>Cherishing peaceful moments out in nature, a favourite pastime of Grandpa.</p>
+                                    <button class="view-btn" data-img="assets/4.jpg"><i class="fas fa-expand"></i> View Full</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 5 (Unsplash Placeholder) -->
+                    <div class="gallery-item glass-card reveal-up" data-delay="400">
+                        <div class="gallery-img-container">
+                            <img src="assets/5.jpg" alt="Old Books" onerror="this.src='https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600'">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">Hobbies</span>
+                                    <h4>Love for Stories</h4>
+                                    <p>An avid reader, Grandpa always filled our minds with fascinating tales.</p>
+                                    <button class="view-btn" data-img="assets/5.jpg"><i class="fas fa-expand"></i> View Full</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 6 (Unsplash Placeholder) -->
+                    <div class="gallery-item glass-card reveal-up" data-delay="500">
+                        <div class="gallery-img-container">
+                            <img src="assets/6.jpg" alt="Grandpa and Grandchild" onerror="this.src='https://images.unsplash.com/photo-1486482440497-e714c556a020?auto=format&fit=crop&q=80&w=600'">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">Memories</span>
+                                    <h4>Generations Holding Hands</h4>
+                                    <p>A symbol of guiding support that connects our past with our future.</p>
+                                    <button class="view-btn" data-img="assets/6.jpg"><i class="fas fa-expand"></i> View Full</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Family Messages Section -->
+        <section id="messages" class="messages-section section-padding">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Messages from Family</h2>
+                    <div class="header-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-comments divider-icon"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="section-subtitle">Heartwarming wishes and personal thank you notes from the family members who look up to you.</p>
+                </div>
+
+                <!-- Messages Carousel -->
+                <div class="carousel-container reveal-up">
+                    <div class="messages-slider">
+                        <!-- Message 1 -->
+                        <div class="message-slide active">
+                            <div class="glass-card message-card">
+                                <div class="quote-icon-top"><i class="fas fa-quote-left"></i></div>
+                                <p class="message-text">"To the strongest man I know. Thank you for showing me what true dedication means, and for always being a source of light and wisdom in my life. You've taught me how to lead a family with love, honor, and humor. Happy Birthday, Dad!"</p>
+                                <div class="message-author">
+                                    <div class="author-avatar"><i class="fas fa-user-tie"></i></div>
+                                    <div class="author-info">
+                                        <h4 class="author-name">Murugesh, Selvi, Ramakrishnan</h4>
+                                        <span class="author-rel">His Sons and Daughter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message 2 -->
+
+                        <div class="message-slide">
+                            <div class="glass-card message-card">
+                                <div class="quote-icon-top"><i class="fas fa-quote-left"></i></div>
+                                <p class="message-text">"Happy Birthday! We are grateful for your love, encouragement, and the values you have shared with us. Wishing you a day filled with happiness and a year filled with blessings."</p>
+                                <div class="message-author">
+                                    <div class="author-avatar"><i class="fas fa-female"></i></div>
+                                    <div class="author-info">
+                                        <h4 class="author-name">Arumugam, Santhana Kumari, Aruna </h4>
+                                        <span class="author-rel">His Son-in-Law and Daughter-in-Law</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <!-- Message 3 -->
+                        <div class="message-slide">
+                            <div class="glass-card message-card">
+                                <div class="quote-icon-top"><i class="fas fa-quote-left"></i></div>
+                                <p class="message-text">"Grandpa, your stories about the 'old days' are my absolute favorite. You make every ordinary moment feel special when you're around. Thank you for always slipping me sweets when mom wasn't looking! I love you so much!"</p>
+                                <div class="message-author">
+                                    <div class="author-avatar"><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="author-info">
+                                        <h4 class="author-name">Emy & Yazhini</h4>
+                                        <span class="author-rel">His Granddaughters</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Message 4 -->
+                        <div class="message-slide">
+                            <div class="glass-card message-card">
+                                <div class="quote-icon-top"><i class="fas fa-quote-left"></i></div>
+                                <p class="message-text">"Happy Birthday, Grandpa! Thank you for teaching me how to fish, how to handle defeats, and how to stay humble when we win. You're the ultimate role model, and I'm proud to carry your name."</p>
+                                <div class="message-author">
+                                    <div class="author-avatar"><i class="fas fa-user-astronaut"></i></div>
+                                    <div class="author-info">
+                                        <h4 class="author-name">Siva, Pavi & Joe.</h4>
+                                        <span class="author-rel">His Grandsons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <div class="carousel-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                    
+                    <button class="carousel-control-btn prev" aria-label="Previous Message">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control-btn next" aria-label="Next Message">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Guestbook Section (Adds interactive fun for the family) -->
+        <section id="guestbook" class="guestbook-section section-padding">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Leave a Birthday Wish</h2>
+                    <div class="header-divider">
+                        <span class="divider-line"></span>
+                        <i class="fas fa-pen-fancy divider-icon"></i>
+                        <span class="divider-line"></span>
+                    </div>
+                    <p class="section-subtitle">Leave your name and a heartfelt message here. Let's cover Grandpa in love!</p>
+                </div>
+
+                <div class="guestbook-wrapper">
+                    <!-- Form -->
+                    <div class="glass-card guestbook-form-card reveal-left">
+                        <h3>Write Your Message</h3>
+                        <form id="wish-form">
+                            <div class="form-group">
+                                <label for="guest-name">Your Name / Relationship</label>
+                                <input type="text" id="guest-name" required placeholder="e.g. Sarah (Your Granddaughter)">
+                            </div>
+                            <div class="form-group">
+                                <label for="guest-message">Your Message</label>
+                                <textarea id="guest-message" rows="4" required placeholder="Write your warm wishes here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-paper-plane"></i> Send Wish to Grandpa
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Wishes List -->
+                    <div class="glass-card guestbook-list-card reveal-right">
+                        <h3>Wishes on the Wall</h3>
+                        <div class="wishes-list" id="wishes-list-container">
+                            <!-- Wishes will be populated here via JS -->
+                            <div class="wish-item empty-state">
+                                <p>No messages left yet. Be the first to write something beautiful!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Special Thank You Note Section -->
+        <section id="thank-you" class="thank-you-section section-padding">
+            <div class="container">
+                <div class="thank-you-wrapper glass-card reveal-up">
+                    <div class="thank-you-bg-overlay"></div>
+                    <div class="thank-you-content text-center">
+                        <div class="thank-you-icon">
+                            <i class="fas fa-star-and-crescent"></i>
+                        </div>
+                        <h2 class="thank-you-title">Thank You, Grandfather</h2>
+                        <p class="thank-you-text">For your endless sacrifices, your infinite patience, and the boundless love you offer. You are the heartbeat of our family, and we are blessed beyond measure to have you as our grandfather. We love you today, tomorrow, and forever.</p>
+                        
+                        <!-- Family Crest or Emblem representation -->
+                        <div class="family-emblem">
+                            <span class="emblem-initial">G</span>
+                            <span class="emblem-ribbon">Established Love</span>
+                        </div>
+                        
+                        <div class="celebrate-more">
+                            <button class="btn btn-primary celebrate-trigger-btn">
+                                <i class="fas fa-gift"></i> Shower with Confetti
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Image Lightbox Modal for Photo Gallery -->
+    <div id="lightbox" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img class="lightbox-content" id="lightbox-img" alt="Enlarged photo">
+            <div id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- 7. Footer with Birthday Celebration Animation -->
+    <footer class="site-footer">
+        <div class="footer-cake-section">
+            <div class="cake-container">
+                <h3 class="cake-title">Blow Out Grandpa's Candles!</h3>
+                <p class="cake-subtitle">Click the candles to make a wish and blow them out.</p>
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-top"></div>
+                    <div class="icing"></div>
+                    <div class="drip drip1"></div>
+                    <div class="drip drip2"></div>
+                    <div class="drip drip3"></div>
+                    
+                    <!-- Candles -->
+                    <div class="candles-wrapper">
+                        <!-- Candle 1 -->
+                        <div class="candle active" id="candle-1">
+                            <div class="thread"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <!-- Candle 2 -->
+                        <div class="candle active" id="candle-2">
+                            <div class="thread"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <!-- Candle 3 -->
+                        <div class="candle active" id="candle-3">
+                            <div class="thread"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <!-- Candle 4 -->
+                        <div class="candle active" id="candle-4">
+                            <div class="thread"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <!-- Candle 5 -->
+                        <div class="candle active" id="candle-5">
+                            <div class="thread"></div>
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cake-wishes-feedback" class="cake-feedback hidden">
+                    <i class="fas fa-wand-magic-sparkles"></i> <strong>A wish has been made!</strong> May your year be filled with magic, Grandpa!
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p class="copyright-text">&copy; 2026 Crafted with ❤️ by the Family. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#hero" class="footer-link"><i class="fas fa-arrow-up"></i> Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
